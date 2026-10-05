@@ -1,4 +1,4 @@
-use std::{borrow::Cow, ffi::c_void, ptr::NonNull, sync::Arc};
+use std::{borrow::Cow, ffi::c_void, sync::Arc};
 
 use crate::{DataWrapper, DndAction, DndSurface, Icon};
 use raw_window_handle::HasWindowHandle;
@@ -44,7 +44,7 @@ impl<T: mime::AsMimeTypes> AsMimeTypes for DataWrapper<T> {
 }
 
 impl smithay_clipboard::dnd::RawSurface for DndSurface {
-    unsafe fn get_ptr(&mut self) -> NonNull<c_void> {
+    unsafe fn get_ptr(&mut self) -> *mut c_void {
         self.0.window_handle().unwrap().get_ptr()
     }
 }
